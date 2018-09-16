@@ -6,19 +6,19 @@ use App\Core\Classes\Errors;
 abstract class Controller
 {
     protected $url;
-    protected $action;
+    protected $method;
 
-    function __construct($url, $action)
+    function __construct($url, $method)
     {
         $this->url = $url;
-        $this->action = $action;
-        $this->executeAction();
+        $this->method = $method;
+        $this->executeMethod();
     }
 
-    function executeAction()
+    function executeMethod()
     {
-        if(!empty($this->action)){
-            return $this->{$this->action}();
+        if(!empty($this->method)){
+            return $this->{$this->method}();
         }
     }
 
@@ -29,7 +29,6 @@ abstract class Controller
             require_once ($view_file);
         } else {
             Errors::error(404);
-            //throw new \Exception('View not found!');
         }
     }
 

@@ -7,7 +7,7 @@ class ControllerLoader
 {
     private $url;
     private $controller;
-    private $action;
+    private $method;
     private $namespace = 'App\\Controllers\\';
 
     function __construct()
@@ -24,9 +24,9 @@ class ControllerLoader
         }
 
         if(isset($this->url[1])){
-            $this->action = $this->url[1];
+            $this->method = $this->url[1];
         } else {
-            $this->action = 'index';
+            $this->method = 'index';
         }
         $this->createController();
     }
@@ -35,19 +35,16 @@ class ControllerLoader
         if(class_exists($this->controller)){
             $parent = class_parents($this->controller);
             if(in_array($this->namespace . 'Controller', $parent)){
-                if(method_exists($this->controller, $this->action)){
-                    return new $this->controller($this->url, $this->action);
+                if(method_exists($this->controller, $this->method)){
+                    return new $this->controller($this->url, $this->method);
                 } else {
                     Errors::error('404');
-                    //throw new \Exception('Action ' . $this->action . ' not found!');
                 }
             } else {
                 Errors::error('404');
-                //throw new \Exception('Controller not found!');
             }
         } else {
             Errors::error('404');
-            //throw new \Exception('Controller ' . $this->controller . ' not found!');
         }
     }
 }

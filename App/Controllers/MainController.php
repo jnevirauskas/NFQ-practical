@@ -13,9 +13,7 @@ class MainController extends Controller
 
         var_dump($names);
 
-        $service = 'pervezimas';
-
-        $this->view('main/index', ['service' => $service]);
+        $this->view('main/index', ['names' => $names]);
 
     }
 

@@ -12,6 +12,5 @@ class MainModel extends Model
         if($dbh->rowCount()){
             return $dbh->fetchAll();
         }
-        //return new \Exception('No records found');
     }
 }
