@@ -1,0 +1,17 @@
+{
+  "name": "NFQ/Practical",
+  "description": "",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Julius Nevirauskas"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/",
+      "App\\Core\\Classes\\": "App/Core/Classes/"
+    }
+  }
+}
